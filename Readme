@@ -1,1 +1,122 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[{"file_id":"1LhRaIYff1C42oUAJyounAN2X-Ke_hKTR","timestamp":1746064058072}],"authorship_tag":"ABX9TyNRwMZaK7IojOltHLgnIiQL"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"markdown","source":["---\n","# Smart Sentiment Analytics: Decoding Social Media Emotions with Computational Intelligence\n","\n","This project analyzes real-world social media content (tweets, YouTube comments) to detect sentiment using multiple machine learning models. From traditional TF-IDF models to transformer-based DistilBERT, we explore the impact of contextual understanding on emotional classification.\n","\n","---\n","```markdown\n","\n","## 📁 Folder Structure\n","\n","CI research project/\n","│\n","├── Datasets/\n","│   ├── training.1600000.processed.noemoticon.csv      # Twitter (Sentiment140)\n","│   ├── US_comments_Cleaned.csv                        # YouTube dataset\n","│   └── kaggle.json                                     # Replace with your own Kaggle API key\n","│\n","├── Source_Code/\n","│   ├── 1_Traditional_vs_CNN_vs_DistilBERT.ipynb       # All 3 model evaluations + graph\n","│   ├── 2_TFIDF_vs_DistilBERT_Analysis.ipynb           # Graph + metrics table\n","│   ├── 3_DistilBERT_Final_HighAccuracy.ipynb          # 87% model with confusion matrix, dist.\n","│   └── AdditionalWork_for_Accuracy/\n","│       ├── Accuracy_83.ipynb                          # High-performing DistilBERT run\n","│       └── Accuracy_87.ipynb                          # Matches final validation results\n","│\n","├── SoftwareManual/\n","│   ├── README.py                                       # ← Steps to execute the project\n","│   └── requirements.txt                                # Pre requisites to download\n","│\n","├── Final_Report.pdf                                    # IEEE-style report\n","└── Project_Presentation_CI_Medha.pptx                  # PPT\n","```\n","\n","---\n","\n","## What This Project Does\n","\n","- Fine-tunes transformer models (DistilBERT) on noisy, emotion-rich social content\n","- Benchmarks traditional models (TF-IDF + LR, CNN)\n","- Handles emojis, slang, sarcasm via preprocessing\n","- Visualizes distribution, word clouds, and confusion matrix\n","- Achieves **87% accuracy** and **F1-score of 0.87** with DistilBERT\n","\n","---\n","\n","## How to Run the Code\n","\n","### Step 1: Install Dependencies\n","\n","Use the provided `requirements.txt`:\n","\n","```bash\n","pip install -r SoftwareManual/requirements.txt\n","```\n","\n","### Step 2: Use Your Own Kaggle API\n","\n","- Replace the `kaggle.json` file with **your own Kaggle credentials**\n","- Place it in `Datasets/` or your notebook's working directory\n","\n","Generate yours from:  \n","https://www.kaggle.com/settings/account → \"Create New API Token\"\n","\n","### Step 3: Open and Execute Notebooks\n","\n","Launch each `.ipynb` in `Source_Code/` via:\n","\n","- **Google Colab** (recommended for DistilBERT)\n","- Or **Jupyter Lab** locally\n","\n","Start with:\n","- `1_Traditional_vs_CNN_vs_DistilBERT.ipynb`\n","- Then: `2_TFIDF_vs_DistilBERT_Analysis.ipynb`\n","- Then: `3_DistilBERT_Final_HighAccuracy.ipynb`\n","- Lastly: Optional deeper work → `AdditionalWork_for_Accuracy/`\n","\n","---\n","\n","## Results Summary\n","\n","| Model                      | Accuracy | F1 Score |\n","|---------------------------|----------|----------|\n","| TF-IDF + LogisticRegression | 71.8%   | 0.72     |\n","| CNN                       | 65.4%   | 0.65     |\n","| DistilBERT (final)        | 87.0%   | 0.87     |\n","\n","- All metrics and plots (confusion matrix, sentiment dist.) are included in notebooks\n","\n","---\n","\n","## Additional Notes\n","\n","- Every code file maps directly to results/observations shown in the report and slides\n","- Files in `AdditionalWork_for_Accuracy/` prove experimentation consistency (83%, 87%)\n","- All results are backed by **real execution**, not synthetic metrics\n","- All preprocessing is **custom-built** for social data (emojis, slang, short-form)\n","\n","---\n","\n","## Limitations\n","\n","- Sarcasm detection not deeply integrated (explored via future work)\n","- Large CSVs excluded from GitHub due to LFS quota, but included in this drive\n","- All code is built for batch inference, not real-time APIs\n","\n","---\n","\n","## Submission Link (Google Drive)\n","\n","**Project Folder**  \n","[CI Project Google Drive](https://drive.google.com/drive/folders/1uaNAeurbdx-1zIOPtFrP-ugq1_MPKTD6)\n","\n","---\n","\n","## Contributors\n","\n","- Nagamedha Sakhamuri  \n","- Nikitha Bonthala  \n","Under the guidance of: Prof. Yanqing Zhang, Georgia State University\n","\n","---"],"metadata":{"id":"9jt42Uf0pXCR"}}]}
+---
+# Smart Sentiment Analytics: Decoding Social Media Emotions with Computational Intelligence
+
+This project analyzes real-world social media content (tweets, YouTube comments) to detect sentiment using multiple machine learning models. From traditional TF-IDF models to transformer-based DistilBERT, we explore the impact of contextual understanding on emotional classification.
+
+---
+```markdown
+
+## 📁 Folder Structure
+
+CI research project/
+│
+├── Datasets/
+│   ├── training.1600000.processed.noemoticon.csv      # Twitter (Sentiment140)
+│   ├── US_comments_Cleaned.csv                        # YouTube dataset
+│   └── kaggle.json                                     # Replace with your own Kaggle API key
+│
+├── Source_Code/
+│   ├── 1_Traditional_vs_CNN_vs_DistilBERT.ipynb       # All 3 model evaluations + graph
+│   ├── 2_TFIDF_vs_DistilBERT_Analysis.ipynb           # Graph + metrics table
+│   ├── 3_DistilBERT_Final_HighAccuracy.ipynb          # 87% model with confusion matrix, dist.
+│   └── AdditionalWork_for_Accuracy/
+│       ├── Accuracy_83.ipynb                          # High-performing DistilBERT run
+│       └── Accuracy_87.ipynb                          # Matches final validation results
+│
+├── SoftwareManual/
+│   ├── README.py                                       # ← Steps to execute the project
+│   └── requirements.txt                                # Pre requisites to download
+│
+├── Final_Report.pdf                                    # IEEE-style report
+└── Project_Presentation_CI_Medha.pptx                  # PPT
+```
+
+---
+
+## What This Project Does
+
+- Fine-tunes transformer models (DistilBERT) on noisy, emotion-rich social content
+- Benchmarks traditional models (TF-IDF + LR, CNN)
+- Handles emojis, slang, sarcasm via preprocessing
+- Visualizes distribution, word clouds, and confusion matrix
+- Achieves **87% accuracy** and **F1-score of 0.87** with DistilBERT
+
+---
+
+## How to Run the Code
+
+### Step 1: Install Dependencies
+
+Use the provided `requirements.txt`:
+
+```bash
+pip install -r SoftwareManual/requirements.txt
+```
+
+### Step 2: Use Your Own Kaggle API
+
+- Replace the `kaggle.json` file with **your own Kaggle credentials**
+- Place it in `Datasets/` or your notebook's working directory
+
+Generate yours from:  
+https://www.kaggle.com/settings/account → "Create New API Token"
+
+### Step 3: Open and Execute Notebooks
+
+Launch each `.ipynb` in `Source_Code/` via:
+
+- **Google Colab** (recommended for DistilBERT)
+- Or **Jupyter Lab** locally
+
+Start with:
+- `1_Traditional_vs_CNN_vs_DistilBERT.ipynb`
+- Then: `2_TFIDF_vs_DistilBERT_Analysis.ipynb`
+- Then: `3_DistilBERT_Final_HighAccuracy.ipynb`
+- Lastly: Optional deeper work → `AdditionalWork_for_Accuracy/`
+
+---
+
+## Results Summary
+
+| Model                      | Accuracy | F1 Score |
+|---------------------------|----------|----------|
+| TF-IDF + LogisticRegression | 71.8%   | 0.72     |
+| CNN                       | 65.4%   | 0.65     |
+| DistilBERT (final)        | 87.0%   | 0.87     |
+
+- All metrics and plots (confusion matrix, sentiment dist.) are included in notebooks
+
+---
+
+## Additional Notes
+
+- Every code file maps directly to results/observations shown in the report and slides
+- Files in `AdditionalWork_for_Accuracy/` prove experimentation consistency (83%, 87%)
+- All results are backed by **real execution**, not synthetic metrics
+- All preprocessing is **custom-built** for social data (emojis, slang, short-form)
+
+---
+
+## Limitations
+
+- Sarcasm detection not deeply integrated (explored via future work)
+- Large CSVs excluded from GitHub due to LFS quota, but included in this drive
+- All code is built for batch inference, not real-time APIs
+
+---
+
+## Submission Link (Google Drive)
+
+**Project Folder**  
+[CI Project Google Drive]:
+https://drive.google.com/drive/folders/1uaNAeurbdx-1zIOPtFrP-ugq1_MPKTD6?usp=drive_link
+
+---
+
+## Contributors
+
+- Nagamedha Sakhamuri  
+- Nikitha Bonthala  
+Under the guidance of: Prof. Yanqing Zhang, Georgia State University
+
+---
